@@ -36,17 +36,19 @@ public class StudentsListActivity extends AppCompatActivity {
         adapter = new StudentRecyclerAdapter();
         rl.setAdapter(adapter);
 
-        adapter.setListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(int pos) {
-                Log.d("TAG", "row click " + pos);
-            }
-        });
         Button plusBtn = findViewById(R.id.btnPlus);
         plusBtn.setOnClickListener(view -> {
             Intent intent = new Intent(this, AddStudentActivity.class);
             startActivity(intent);
         });
+
+        adapter.setOnClickListener((int pos)-> {
+            Log.d("TAG", "Row was clicked " + pos);
+            Intent intent = new Intent(this,StudentDetailsActivity.class);
+            intent.putExtra("key",pos);
+            startActivity(intent);
+        });
+
     }
 
     @Override
@@ -95,7 +97,7 @@ public class StudentsListActivity extends AppCompatActivity {
     }
     class StudentRecyclerAdapter extends RecyclerView.Adapter<StudentViewHolder>{
         OnItemClickListener listener;
-        void setListener(OnItemClickListener l){
+        void setOnClickListener(OnItemClickListener l){
             this.listener = l;
         }
         @NonNull

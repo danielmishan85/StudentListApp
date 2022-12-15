@@ -22,4 +22,16 @@ public class Student {
     public String getId() {
         return id;
     }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public boolean isCb() {
+        return cb;
+    }
 }
